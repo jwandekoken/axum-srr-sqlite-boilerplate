@@ -1,2 +1,8 @@
 db.sqlite
 .env
+target
+
+
+# Added by cargo
+
+/target

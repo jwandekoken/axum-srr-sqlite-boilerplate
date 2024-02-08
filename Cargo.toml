@@ -1,0 +1,17 @@
+[package]
+name = "axum-website"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = "0.7.4"
+sqlx = { version = "0.7", features = ["runtime-tokio-native-tls", "sqlite"]}
+tokio = { version = "1.36.0", features = ["full"] }
+tower = "0.4.13"
+serde = { version = "1.0.193", features = ["derive"] }
+serde_json = "1.0.108"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+chrono = "0.4.34"
