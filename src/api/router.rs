@@ -2,7 +2,7 @@ use axum::{response::IntoResponse, routing::get, Json, Router};
 use sqlx::{Pool, Sqlite};
 
 use crate::api::modules::users::users_routes::create_user_routes;
-use crate::infrastructure::modules::users::users_repository::UserRepository;
+use crate::infrastructure::modules::users::users_repository::SqlxUserRepository;
 
 async fn health_checker_handler() -> impl IntoResponse {
     const MESSAGE: &str = "Working fine, thanks!";
@@ -16,7 +16,7 @@ async fn health_checker_handler() -> impl IntoResponse {
 }
 
 pub fn create_router(pool: Pool<Sqlite>) -> Router {
-    let user_repository = UserRepository::new(pool.clone());
+    let user_repository = SqlxUserRepository::new(pool.clone());
 
     let user_routes = create_user_routes(user_repository);
 

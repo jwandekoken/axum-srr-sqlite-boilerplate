@@ -1,18 +1,24 @@
+use futures::Future;
 use sqlx::{Pool, Sqlite};
+use std::pin::Pin;
 
 use crate::domain::modules::users::user_model::User;
 
+pub trait UserRepository {
+    fn get_all_users(&self) -> Pin<Box<dyn Future<Output = Result<Vec<User>, sqlx::Error>> + '_>>;
+}
+
 #[derive(Clone, Debug)]
-pub struct UserRepository {
+pub struct SqlxUserRepository {
     pool: Pool<Sqlite>,
 }
 
-impl UserRepository {
+impl SqlxUserRepository {
     pub fn new(pool: Pool<Sqlite>) -> Self {
         Self { pool }
     }
 
-    pub async fn get_all_users(&self) -> Result<Vec<User>, sqlx::Error> {
+    async fn get_all_users_impl(&self) -> Result<Vec<User>, sqlx::Error> {
         let user_results = match sqlx::query_as::<_, User>(
             r#"
         SELECT *
@@ -32,5 +38,11 @@ impl UserRepository {
         };
 
         user_results
+    }
+}
+
+impl UserRepository for SqlxUserRepository {
+    fn get_all_users(&self) -> Pin<Box<dyn Future<Output = Result<Vec<User>, sqlx::Error>> + '_>> {
+        Box::pin(self.get_all_users_impl())
     }
 }

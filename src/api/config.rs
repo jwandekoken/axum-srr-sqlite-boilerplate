@@ -1,6 +1,6 @@
-use crate::infrastructure::modules::users::users_repository::UserRepository;
+use crate::infrastructure::modules::users::users_repository::SqlxUserRepository;
 
 #[derive(Clone, Debug)]
 pub struct AppState {
-    pub user_repository: UserRepository,
+    pub user_repository: SqlxUserRepository,
 }
