@@ -26,5 +26,5 @@ pub fn create_router(pool: Pool<Sqlite>) -> Router {
         .nest("/users", user_routes)
         .nest("/", common_routes);
 
-    Router::new().nest("/api", api_routes)
+    Router::new().nest("/", api_routes)
 }

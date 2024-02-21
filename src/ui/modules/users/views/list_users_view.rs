@@ -1,4 +1,4 @@
-use crate::api::modules::users::views::layout::Layout;
+use crate::ui::layout::Layout;
 
 use crate::domain::modules::users::user_model::User;
 use dioxus::prelude::*;
