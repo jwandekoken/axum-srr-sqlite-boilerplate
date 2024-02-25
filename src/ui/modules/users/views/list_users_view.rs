@@ -1,57 +1,20 @@
-use crate::ui::layout::Layout;
+use askama::Template;
+use axum::response::IntoResponse;
 
 use crate::domain::modules::users::user_model::User;
-use dioxus::prelude::*;
 
-struct Props {
-    users: Vec<User>,
+#[derive(Template)]
+#[template(path = "users/list_users.html")]
+struct ListUsersTemplate<'a> {
+    title: &'a str,
+    name: &'a str,
 }
 
-// Take a Vec<User> and create an HTML table.
-pub fn users(users: Vec<User>) -> String {
-    // Inner function to create our rsx! component
-    fn app(cx: Scope<Props>) -> Element {
-        cx.render(rsx! {
-            Layout {    // <-- Use our layout
-                title: "Users Table",
-                table {
-                    thead {
-                        tr {
-                            th { "ID" }
-                            th { "Email" }
-                        }
-                    }
-                    tbody {
-                        cx.props.users.iter().map(|user| {
-                            let id_display = match user.id {
-                                Some(id) => format!("{}", id),
-                                None => "None".to_string(),
-                            };
+pub fn users(users: Vec<User>) -> impl IntoResponse {
+    println!("Users: {:?}", users);
 
-                            rsx!(
-                                tr {
-                                    td {
-                                        strong {
-                                            "{id_display}"
-                                        }
-                                    }
-                                    td {
-                                        "{user.email}"
-                                    }
-                                }
-                            )
-                        })
-                    }
-                }
-            }
-        })
-    }
-
-    // Construct our component and render it to a string.
-    let mut app = VirtualDom::new_with_props(app, Props { users });
-    let _ = app.rebuild();
-    format!(
-        "<!DOCTYPE html><html lang='en'>{}</html>",
-        dioxus_ssr::render(&app)
-    )
+    ListUsersTemplate {
+        title: "Users",
+        name: "Test!",
+    }; // instantiate your struct
 }

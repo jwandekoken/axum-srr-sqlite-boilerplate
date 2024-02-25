@@ -16,5 +16,5 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 chrono = "0.4.34"
 futures = "0.3"
-dioxus = "0.4.3"
-dioxus-ssr = "0.4.3"
+askama = { version = "0.12.1", features = ["with-axum"] }
+askama_axum = "0.4.0"
