@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My Axum Website{% endblock %}</title>
+    <meta
+      name="description"
+      content="{% block description %}A brief description of your Axum website.{% endblock %}"
+    />
+
+    <link rel="stylesheet" href="/styles.css" />
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+
+    <script src="/app.js"></script>
+  </body>
+</html>
