@@ -13,8 +13,10 @@ struct ListUsersTemplate<'a> {
 pub fn users(users: Vec<User>) -> impl IntoResponse {
     println!("Users: {:?}", users);
 
-    ListUsersTemplate {
+    let template = ListUsersTemplate {
         title: "Users",
-        name: "Test!",
-    }; // instantiate your struct
+        name: "Test2222!",
+    };
+
+    template
 }

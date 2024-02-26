@@ -13,5 +13,5 @@ use crate::ui::modules::users::views::list_users_view;
 
 pub async fn list_users(State(state): State<AppState>) -> impl IntoResponse {
     let users = list_users_usecase::list_users(&state.user_repository);
-    list_users_view::users(users);
+    return list_users_view::users(users);
 }
