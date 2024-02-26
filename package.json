@@ -1,0 +1,16 @@
+{
+  "name": "axum-ssr-sqlite-boilerplate",
+  "version": "1.0.0",
+  "description": "SSR boiplerplate with Axum, SQLite, Askama and TailwindCSS",
+  "main": "index.js",
+  "scripts": {
+    "dev:css": "tailwindcss -i styles/tailwind.css -o assets/main.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1"
+  }
+}
