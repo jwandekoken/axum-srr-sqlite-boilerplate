@@ -8,6 +8,6 @@ pub fn create_user_routes(user_repository: SqlxUserRepository) -> Router {
     let app_state = AppState { user_repository };
 
     Router::new()
-        .route("/", get(users_handlers::list_users))
+        .route("/api/users", get(users_handlers::list_users))
         .with_state(app_state)
 }
