@@ -4,30 +4,11 @@
 {% block content %}
 <h1 class="text-green-500">{{ name }}</h1>
 
-<form id="add-form">
-  <input
-    placeholder="Your todo description..."
-    required
-    type="text"
-    name="description"
-  />
-  <button
-    hx-post="/todos"
-    hx-trigger="click"
-    hx-target="#todos-content"
-    hx-swap="beforeend"
-  >
-    Add
-  </button>
-</form>
+<button hx-get="/api/users" hx-trigger="click" hx-target="#target">
+  Get users
+</button>
 
-<div
-  id="list"
-  hx-get="/todos"
-  hx-target="this"
-  hx-trigger="load"
-  hx-swap="outerHTML"
->
-  Loading...
-</div>
+<h3>Users</h3>
+<div id="target"></div>
+
 {% endblock %}
